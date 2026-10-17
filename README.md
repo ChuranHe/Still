@@ -6,6 +6,29 @@ A local photo-frame app for Meta Portal. Import photos from USB or a browser, or
 
 [Download the latest release](https://github.com/ChuranHe/Still/releases/latest) · [Install on your Portal](#install-a-prebuilt-apk)
 
+## A look inside
+
+![A short tour of Still: landscape slideshow, album collages, photo previews, cover selection, and Settings](docs/media/still-demo.gif)
+
+Captured from Still's production interface in a browser, with AI-generated scenery and fictional people. Weather, storage, and album data are examples. [Sample photos and capture details](docs/media/README.md).
+
+<details>
+<summary>View full-size screenshots</summary>
+
+**Landscape slideshow**
+
+![Landscape photo frame with clock, date, and weather over generated coastal scenery](docs/media/slideshow-landscape.png)
+
+**Portrait slideshow**
+
+![Portrait photo frame showing a generated photo of two fictional friends at a picnic](docs/media/slideshow-portrait.png)
+
+**Albums and collage covers**
+
+![Album library with three sample albums, collage thumbnails, and the storage capacity bar](docs/media/albums.png)
+
+</details>
+
 ## Features
 
 - **Albums:** create, rename, select, and delete albums. Each album has independent photo copies; duplicates are skipped within an album.

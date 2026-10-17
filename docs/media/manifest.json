@@ -1,0 +1,12 @@
+{
+  "description": "Reviewed generated sample photos and browser captures of the production Still interface. See docs/media/README.md and prompts.json.",
+  "files": {
+    "docs/media/albums.png": "c87cd6826e564090186e8db2c7ce28da90edf3a1f7bc2ccb10a52a3a8bb21c60",
+    "docs/media/samples/coast.jpg": "026cdbf0acb74687ca462c7a9378901b4482915746c970f9d40c61f73a412af8",
+    "docs/media/samples/mountains.jpg": "1d885dc432e93236a29ebcaaf0d576313701a6c457c3581f5169133195c99319",
+    "docs/media/samples/people.jpg": "f1dbafbd79320c8550cbd86afa5d67e0f4a7b733afeba03d312e7af9182b1d31",
+    "docs/media/slideshow-landscape.png": "d3841838ea3bcd7b4782ef61e33448c3760092d3d7bb5adaf4ab97b250d45fc0",
+    "docs/media/slideshow-portrait.png": "5d3d06ace26b33769ea15d051e8b7ef717d531935ea7017457f042fa09a021e3",
+    "docs/media/still-demo.gif": "2fc717eeb02dba05e684bba865854572192097191587802852c4ff95d97fe3f9"
+  }
+}

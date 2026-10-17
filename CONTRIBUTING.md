@@ -13,6 +13,6 @@ Bug reports and focused pull requests are welcome. Describe the Portal/Android v
 
 Changes to image storage or migration must preserve existing photos, settings, and album covers. Incomplete settings edits must keep the last valid values and allow unrelated settings to save.
 
-Generated files belong under `build/`. Keep SDKs, signing keys, original photos, device backups, account credentials, and personal machine paths out of commits. Do not reformat the vendored QR generator; retain its original notice and checksum.
+Generated working files belong under `build/`. Reviewed, generated README demo assets are kept in [docs/media](docs/media/README.md) with provenance and hashes. Keep SDKs, signing keys, original personal photos, device backups, account credentials, and personal machine paths out of commits. Do not reformat the vendored QR generator; retain its original notice and checksum.
 
 Contributions are distributed under the repository's [MIT license](LICENSE).

@@ -1,0 +1,18 @@
+{
+  "tool": "Built-in image_gen",
+  "useCase": "photorealistic-natural",
+  "prompts": [
+    {
+      "id": "coast",
+      "prompt": "Use case: photorealistic-natural. Asset type: generated sample photograph for the public README of Still, a digital photo-frame app. Primary request: a beautiful original coastal scenery photograph, no UI or device. Scene: rugged Pacific coastline at golden hour, green headlands and a small sandy cove, blue-green water with delicate white surf, atmospheric distant cliffs. Composition: wide landscape 3:2 photograph, spacious balanced composition, horizon in upper third, useful detail through center for a slight crop to 8:5. Style: natural travel photography, restrained warm film colors, realistic water and grasses, subtle grain, soft evening light. No buildings with branding, no text, no logos, no watermark, no borders, no collage."
+    },
+    {
+      "id": "people",
+      "prompt": "Use case: photorealistic-natural. Asset type: generated sample photograph for the public README of Still, a digital photo-frame app. Primary request: an original candid portrait photograph of two fictional adult friends laughing together at a sunny park picnic, no UI or device. Subjects: an East Asian woman and a Black woman, both around 30, relaxed casual summer clothes, believable natural expressions, sitting together on a picnic blanket with trees softly out of focus. Composition: vertical portrait 2:3 photograph, medium shot, both faces in the central region, framed comfortably to allow a slight 5:8 crop. Style: authentic personal travel photograph, realistic skin texture, soft afternoon light, warm gentle colors, ordinary happy moment. No famous people, no text, no logos, no watermark, no borders, no collage."
+    },
+    {
+      "id": "mountains",
+      "prompt": "Use case: photorealistic-natural. Asset type: generated sample photograph for the public README of Still, a digital photo-frame app. Primary request: an original alpine scenery photograph, no UI or device. Scene: a still turquoise mountain lake reflecting rugged peaks, a few dark evergreens and wildflowers in the foreground, crisp early morning air with soft cloud wisps. Composition: wide landscape 3:2 photograph, elegant natural layering and realistic scale, central image suitable for a slight 8:5 crop. Style: calm fine travel photography, natural blues and greens, luminous detail without oversaturation. No people, no text, no logos, no watermark, no borders, no collage."
+    }
+  ]
+}
