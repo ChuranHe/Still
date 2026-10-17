@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+<defs>
+<linearGradient id="sky" x2="0" y2="1"><stop stop-color="#b8bd9e"/><stop offset=".55" stop-color="#d7c9a0"/><stop offset="1" stop-color="#aaae8b"/></linearGradient>
+<linearGradient id="lake" x2="0" y2="1"><stop stop-color="#8eab9f"/><stop offset="1" stop-color="#294e46"/></linearGradient>
+<linearGradient id="hill" x2="0" y2="1"><stop stop-color="#668578"/><stop offset="1" stop-color="#284d42"/></linearGradient>
+<radialGradient id="glow"><stop stop-color="#eee2b7" stop-opacity=".6"/><stop offset="1" stop-color="#eee2b7" stop-opacity="0"/></radialGradient>
+</defs>
+<path fill="url(#sky)" d="M0 0h1600v1000H0z"/>
+<ellipse cx="1170" cy="235" rx="490" ry="330" fill="url(#glow)"/>
+<circle cx="1190" cy="227" r="66" fill="#ece1bc"/>
+<path fill="#abb69b" d="M0 530 150 449 290 467 465 339 550 398 665 326 790 405 940 271 1035 359 1150 288 1300 394 1415 324 1600 392V1000H0Z"/>
+<path fill="#90a28c" d="m0 604 230-138 147 72 126-77 130 16 165-97 116 49 132-93 131 80 144-33 166 99 113-26v544H0Z"/>
+<path fill="#708f7d" d="m0 598 145 35 121-55 170 43 153-73 125 40 123-53 166 87 134-66 180 27 109-54 174 55v416H0Z"/>
+<path fill="url(#lake)" d="M0 667q360-52 790-19t810-8v360H0Z"/>
+<g stroke="#c7cdb1" fill="none" opacity=".22"><path d="M900 705h418m-298 25h430m-550 27h448m-620 35h473m-365 38h492m-695 45h680m-280 62h420"/><path d="M200 750h290m-450 50h290m10 73h270m-450 59h200"/></g>
+<path fill="url(#hill)" d="M0 464q110 80 184 156t221 64q160 14 281 49t173 93q-290-22-444 59T0 1000Z"/>
+<path fill="#305645" d="m0 636 82-38 99 67 91 5 114 56 201 39 102 43q-217 36-303 118L0 1000Z"/>
+<path fill="#183e32" d="m1600 674-137 51-68 68-181 64-65 143h451Z"/>
+<g fill="#244c3d"><path d="m1400 490-48 136h32l-51 102h135l-50-102h31Z"/><path d="m1488 444-58 167h36l-62 132h172l-61-132h36Z"/><path d="m1574 512-48 144h32l-58 113h100V575Z"/></g>
+<path d="M0 968q267-150 456-123t286 49q124 5 216 106H0Z" fill="#163c30"/>
+<path d="M0 997q222-107 345-78t187 81" fill="#204c38"/>
+</svg>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Add photos · Still</title>
+    <link rel="stylesheet" href="/upload.css" />
+    <link rel="stylesheet" href="/import-progress.css" />
+  </head>
+  <body>
+    <main>
+      <a class="brand" href="/">still<span>A place for your moments</span></a>
+      <p class="eyebrow">FROM YOUR COMPUTER TO YOUR FRAME</p>
+      <h1>Make yourself<br />at home.</h1>
+      <p class="intro">Choose an album, then add photos to your Portal.</p>
+      <section
+        id="device-import-progress"
+        class="import-status hidden"
+        aria-label="Portal import progress"
+      ></section>
+      <form id="upload-form">
+        <label class="code-label" for="code"
+          >Upload code <span>Shown on your Portal · filled automatically by QR</span></label
+        ><input
+          id="code"
+          type="text"
+          inputmode="numeric"
+          autocomplete="off"
+          maxlength="12"
+          placeholder="8-digit code"
+          required
+        />
+        <section class="album-picker">
+          <label for="album">Add to album</label
+          ><select id="album" required>
+            <option value="">Enter your upload code first</option></select
+          ><button
+            id="create-album"
+            type="button"
+            class="create-album"
+            aria-label="Create an album"
+          >
+            <span aria-hidden="true">＋</span> Create an album
+          </button>
+          <p id="album-status" class="help" aria-live="polite"></p>
+        </section>
+        <label id="drop" for="files"
+          ><span class="plus">＋</span><strong>Choose photos or drop them here</strong
+          ><span>JPEG, HEIF/HEIC, PNG or WebP · up to 100 MB each</span
+          ><input id="files" type="file" accept=".jpg,.jpeg,.heic,.heif,.png,.webp" multiple
+        /></label>
+        <div id="previews" class="previews"></div>
+        <p id="selection" class="help">Choose one photo or a whole selection.</p>
+        <button id="send" type="submit">Add to my Portal →</button>
+      </form>
+      <section id="progress-box" hidden aria-live="polite">
+        <div class="batch-heading">
+          <strong>Photo import</strong><span id="overall-label">0%</span>
+        </div>
+        <progress
+          id="overall-progress"
+          max="100"
+          value="0"
+          aria-label="Overall photo import"
+        ></progress>
+        <p id="batch-count"></p>
+        <p id="current"></p>
+        <progress id="progress" max="100" value="0" aria-label="Current photo transfer"></progress>
+        <p id="summary"></p>
+        <ol id="results"></ol>
+      </section>
+      <p class="footnote">
+        The Portal keeps display copies. Camera photos fill the matching frame; squarer photos and
+        extreme panoramas keep their proportions, with a long edge up to 1280 pixels. Copies can
+        belong to different albums. Originals stay on your computer.
+      </p>
+    </main>
+    <footer>On your Wi-Fi. On your frame.</footer>
+    <div id="album-modal" class="modal" hidden>
+      <section
+        class="album-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="album-dialog-title"
+      >
+        <form id="album-name-form">
+          <h2 id="album-dialog-title">Create an album</h2>
+          <label for="new-album-name">Album name</label
+          ><input id="new-album-name" maxlength="80" required autocomplete="off" />
+          <p id="album-name-error" class="help" aria-live="polite"></p>
+          <button id="save-album" type="submit">Create album</button
+          ><button id="cancel-album" type="button">Cancel</button>
+        </form>
+      </section>
+    </div>
+    <script src="/import-progress.js"></script>
+    <script src="/upload.js"></script>
+  </body>
+</html>

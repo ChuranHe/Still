@@ -1,0 +1,117 @@
+.import-status {
+  padding: 17px 19px;
+  margin: 0 0 21px;
+  background: #1d392a;
+  border: 1px solid #637852;
+  border-radius: 12px;
+  color: #e6e9d8;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.import-status.hidden {
+  display: none !important;
+}
+.import-heading,
+.batch-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+}
+.import-heading strong {
+  font-weight: 500;
+}
+.import-heading > span {
+  font-variant-numeric: tabular-nums;
+  color: #d1dcaf;
+}
+.import-status p {
+  font:
+    12px/1.5 Arial,
+    Helvetica,
+    sans-serif !important;
+  margin: 9px 0 !important;
+  white-space: normal !important;
+}
+.import-status .import-album {
+  font-size: 11px !important;
+  color: #bfceb1;
+}
+.import-status .import-summary {
+  font-size: 10px !important;
+  color: #b0c0a6;
+  margin-bottom: 0 !important;
+}
+.import-status .import-file-label {
+  font-size: 11px !important;
+  color: #d6dfc1;
+}
+.import-status progress {
+  display: block;
+  width: 100%;
+  height: 9px;
+  border: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  accent-color: #c5d39d;
+}
+.import-status progress::-webkit-progress-bar {
+  background: #10251a;
+  border-radius: 6px;
+}
+.import-status progress::-webkit-progress-value {
+  background: #c5d39d;
+  border-radius: 6px;
+  transition: width 0.12s linear;
+}
+.import-status progress:not([value])::-webkit-progress-bar {
+  background: linear-gradient(90deg, #10251a, #c5d39d, #10251a);
+  background-size: 200% 100%;
+  animation: import-wait 1.4s linear infinite;
+}
+.import-status .import-bytes {
+  height: 5px;
+}
+.import-status .hidden {
+  display: none !important;
+}
+.import-stopped {
+  border-color: #b19972;
+}
+#frame-import-progress {
+  position: absolute;
+  z-index: 4;
+  top: 24px;
+  right: 26px;
+  width: 370px;
+  max-width: calc(100% - 52px);
+  box-shadow: 0 8px 40px #0007;
+}
+body.panel-open #frame-import-progress {
+  display: none;
+}
+#upload-import-progress {
+  margin-top: 18px;
+}
+#device-import-progress {
+  margin-bottom: 26px;
+}
+#batch-count {
+  font-size: 12px;
+  color: #c6d0b8;
+}
+.batch-heading {
+  margin: 0 0 12px;
+}
+#overall-label {
+  font-variant-numeric: tabular-nums;
+}
+@keyframes import-wait {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}

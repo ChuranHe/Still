@@ -1,0 +1,18 @@
+{
+  "name": "still-portal-frame",
+  "version": "0.11.0",
+  "private": true,
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node tests/order.cjs && node tests/settings.cjs",
+    "format": "prettier --write app/src/main/assets tests scripts/*.mjs docs README.md CONTRIBUTING.md THIRD_PARTY_NOTICES.md package.json .github",
+    "format:check": "prettier --check app/src/main/assets tests scripts/*.mjs docs README.md CONTRIBUTING.md THIRD_PARTY_NOTICES.md package.json .github"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1",
+    "prettier": "3.9.10"
+  }
+}

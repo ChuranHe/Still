@@ -1,0 +1,5 @@
+qrcode-generator
+https://github.com/kazuhikoarase/qrcode-generator
+Commit: 83b7e8fe3fddd3b0368dbafd6ce56995bd25e3c8
+License: MIT (bundled qrcode-LICENSE.txt)
+SHA-256: 79ec86f82856005b1c887905cfccfcfbec3821ca61c7fd5a952faa5f778f791c

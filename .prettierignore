@@ -1,0 +1,9 @@
+.tools/
+build/
+node_modules/
+app/src/main/assets/qrcode.js
+app/src/main/assets/qrcode-LICENSE.txt
+tests/*.java
+tests/*.py
+tests/*.m
+docs/qrcode-provenance.txt

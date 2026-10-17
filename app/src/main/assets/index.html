@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Still · Photo Frame</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="import-progress.css" />
+  </head>
+  <body>
+    <svg class="symbols" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></symbol>
+        <symbol id="i-grid" viewBox="0 0 24 24">
+          <rect x="3" y="3" width="7" height="7" rx="1" />
+          <rect x="14" y="3" width="7" height="7" rx="1" />
+          <rect x="3" y="14" width="7" height="7" rx="1" />
+          <rect x="14" y="14" width="7" height="7" rx="1" />
+        </symbol>
+        <symbol id="i-settings" viewBox="0 0 24 24">
+          <path d="M4 7h16M4 17h16" />
+          <circle cx="9" cy="7" r="3" />
+          <circle cx="15" cy="17" r="3" />
+        </symbol>
+        <symbol id="i-prev" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7" /></symbol>
+        <symbol id="i-next" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7" /></symbol>
+        <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14" /></symbol>
+        <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 4 12 8-12 8z" /></symbol>
+        <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6" /></symbol>
+        <symbol id="i-usb" viewBox="0 0 24 24">
+          <path d="M12 21V3m-3 3 3-3 3 3M12 13l-6-4V6m6 10 6-4V8" />
+          <circle cx="6" cy="4" r="2" />
+          <rect x="16" y="4" width="4" height="4" />
+        </symbol>
+        <symbol id="i-photo" viewBox="0 0 24 24">
+          <rect x="3" y="3" width="18" height="18" rx="3" />
+          <circle cx="16" cy="8" r="2" />
+          <path d="m3 17 6-7 6 7 3-3 3 3" />
+        </symbol>
+      </defs>
+    </svg>
+    <main id="frame" aria-label="Photo frame">
+      <div id="scene">
+        <img id="photo-a" class="photo" alt="" /><img id="photo-b" class="photo" alt="" />
+      </div>
+      <div class="vignette"></div>
+      <div id="widgets" class="widgets bottom">
+        <div id="time-block">
+          <div id="clock"></div>
+          <div id="date"></div>
+        </div>
+        <div id="weather-block">
+          <div id="weather-value"></div>
+          <div id="weather-description"></div>
+          <div id="weather-place"></div>
+          <div id="weather-status"></div>
+        </div>
+      </div>
+      <div id="welcome" class="welcome">
+        <div class="brand">
+          <span class="brand-mark">s</span> still<span class="brand-detail"
+            >A place for your moments</span
+          >
+        </div>
+        <div class="welcome-body">
+          <p class="eyebrow">YOUR PERSONAL PHOTO FRAME</p>
+          <h1 id="welcome-title">Good moments.<br />Give them a little space.</h1>
+          <p id="welcome-copy" class="intro">
+            Your favorite photos, beautifully at home.<br />Add an album and let the day unfold.
+          </p>
+          <div class="welcome-actions">
+            <button id="add-first" class="primary">
+              <svg><use href="#i-plus" /></svg>Add photos</button
+            ><button id="try-demo" class="text-button">Preview the frame <span>↗</span></button
+            ><button id="welcome-settings" class="text-button">Settings</button>
+          </div>
+          <div class="feature-note">
+            <span class="status-dot"></span> Offline friendly
+            <span class="note-divider">/</span> Original proportions
+            <span class="note-divider">/</span> Always in view
+          </div>
+        </div>
+        <div class="welcome-bottom">
+          <span>MADE FOR THE MOMENTS IN BETWEEN</span><span id="display-label"></span>
+        </div>
+      </div>
+      <div id="demo-label" class="demo-label hidden">FRAME PREVIEW · ILLUSTRATED LANDSCAPE</div>
+      <div id="controls" class="controls">
+        <div class="control-brand">still<span id="photo-count">Your photo frame</span></div>
+        <div class="playback">
+          <button id="previous" class="icon-button" aria-label="Previous photo">
+            <svg><use href="#i-prev" /></svg></button
+          ><button id="pause" class="icon-button" aria-label="Pause slideshow">
+            <svg><use id="pause-icon" href="#i-pause" /></svg></button
+          ><button id="next" class="icon-button" aria-label="Next photo">
+            <svg><use href="#i-next" /></svg>
+          </button>
+        </div>
+        <div class="control-actions">
+          <button id="library-button" class="toolbar-button">
+            <svg><use href="#i-grid" /></svg><span>Photos</span></button
+          ><button id="settings-button" class="toolbar-button">
+            <svg><use href="#i-settings" /></svg><span>Settings</span>
+          </button>
+        </div>
+      </div>
+      <div id="progress" class="progress"></div>
+      <section
+        id="frame-import-progress"
+        class="import-status hidden"
+        aria-label="Import progress"
+      ></section>
+    </main>
+    <div id="scrim" class="scrim hidden"></div>
+    <section id="library" class="panel library hidden" aria-label="Photo library">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">MAKE YOURSELF AT HOME</p>
+          <h2 id="library-title">Your albums</h2>
+        </div>
+        <button class="icon-button close-panel" aria-label="Close library">
+          <svg><use href="#i-close" /></svg>
+        </button>
+      </div>
+      <div class="panel-body">
+        <section
+          id="library-import-progress"
+          class="import-status hidden"
+          aria-label="Import progress"
+        ></section>
+        <section id="capacity" aria-label="Device storage">
+          <div class="capacity-heading">
+            <strong>Device storage</strong><span id="capacity-total"></span>
+          </div>
+          <div id="capacity-bar" class="capacity-bar" role="img" aria-label="Storage usage"></div>
+          <div id="capacity-legend" class="capacity-legend"></div>
+        </section>
+        <div id="album-overview">
+          <div class="album-create">
+            <button
+              id="create-album"
+              class="small-button create-album"
+              aria-label="Create an album"
+            >
+              <span aria-hidden="true">＋</span> Create an album
+            </button>
+          </div>
+          <div id="album-list" class="album-grid"></div>
+          <p id="no-albums" class="empty-note hidden">Create your first album, then add photos.</p>
+        </div>
+        <div id="album-content" class="hidden">
+          <div class="album-tools">
+            <button id="all-albums" class="small-button">← Albums</button
+            ><button id="rename-album" class="small-button">Rename</button
+            ><button id="edit-album-cover" class="small-button">Choose cover</button
+            ><button id="delete-album" class="small-button">Delete album</button>
+          </div>
+          <div class="source-grid">
+            <button id="usb-import" class="source-card">
+              <span class="source-icon"
+                ><svg><use href="#i-usb" /></svg></span
+              ><strong>USB drive</strong><small>Add to this album</small
+              ><span class="source-arrow">↗</span>
+            </button>
+            <button id="local-import" class="source-card">
+              <span class="source-icon"
+                ><svg><use href="#i-photo" /></svg></span
+              ><strong>On this Portal</strong><small>Choose a folder</small
+              ><span class="source-arrow">↗</span>
+            </button>
+            <button id="computer-upload" class="source-card">
+              <span class="source-icon">↥</span><strong>Computer upload</strong
+              ><small>Open an address or scan a QR</small><span class="source-arrow">↗</span>
+            </button>
+          </div>
+          <p id="usb-status" class="help-note" aria-live="polite"></p>
+          <div class="library-heading">
+            <h3>Photos <span id="library-count">0</span></h3>
+          </div>
+          <p id="library-empty" class="empty-note">
+            Add photos to this album from USB or your computer.
+          </p>
+          <div id="photo-grid" class="photo-grid"></div>
+          <div id="import-report" class="import-report hidden"></div>
+        </div>
+      </div>
+      <div class="panel-foot">
+        <span id="library-footer">Stored privately on this Portal</span
+        ><button id="start-show" class="primary compact">Back to frame →</button>
+      </div>
+    </section>
+    <section id="settings" class="panel settings hidden" aria-label="Settings">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">A FRAME THAT FEELS LIKE YOU</p>
+          <h2>Set the mood</h2>
+        </div>
+        <button class="icon-button close-panel" aria-label="Close settings">
+          <svg><use href="#i-close" /></svg>
+        </button>
+      </div>
+      <form id="settings-form" class="panel-body">
+        <p id="settings-error" class="help-note hidden" role="status"></p>
+        <section
+          id="settings-import-progress"
+          class="import-status hidden"
+          aria-label="Import progress"
+        ></section>
+        <h3>Display</h3>
+        <label class="setting-row"
+          ><span
+            >Frame direction<small id="direction-status"
+              >Detecting the Portal’s direction…</small
+            ></span
+          ><select name="orientationMode">
+            <option value="auto">Auto · follow Portal</option>
+            <option value="landscape">Landscape</option>
+            <option value="portrait">Portrait</option>
+          </select></label
+        >
+        <label class="setting-row"
+          ><span
+            >Photos to display<small>Squarer photos always show in either direction</small></span
+          ><select name="photoDirections">
+            <option value="matching">Same direction only</option>
+            <option value="all">All photos</option>
+          </select></label
+        >
+        <h3>Sleep mode</h3>
+        <label class="setting-row"
+          ><span
+            >Automatic nightstand<small
+              >Only during sleep hours and when the room is dim</small
+            ></span
+          ><input type="checkbox" name="sleepEnabled" class="switch"
+        /></label>
+        <div class="sleep-times">
+          <label>From<input name="sleepStart" type="time" required /></label
+          ><label>Until<input name="sleepEnd" type="time" required /></label>
+        </div>
+        <label class="setting-row"
+          ><span
+            >Dim-room threshold<small>Enter nightstand at or below this light level</small></span
+          ><span class="lux-input"
+            ><input
+              name="sleepLux"
+              type="number"
+              min="0"
+              max="1000"
+              step="0.1"
+              inputmode="decimal"
+              required
+            /><span>lux</span></span
+          ></label
+        >
+        <p id="sleep-status" class="help-note" aria-live="polite">Reading ambient light…</p>
+        <button id="preview-sleep" type="button" class="small-button">
+          Preview night clock · 15 seconds
+        </button>
+        <p class="help-note">
+          Nightstand uses the lowest screen brightness and a centered clock on black. The slideshow
+          pauses. Normal brightness and photos return when the room brightens or sleep hours end.
+          Tap the clock to wake for 5 minutes. Times follow the Portal’s timezone.
+        </p>
+        <h3>Slideshow</h3>
+        <label class="setting-row"
+          ><span>Time with each photo<small>Choose Hold to leave one photo on screen</small></span
+          ><select name="seconds">
+            <option value="0">Hold forever</option>
+            <option value="5">5 seconds</option>
+            <option value="10">10 seconds</option>
+            <option value="30">30 seconds</option>
+            <option value="60">1 minute</option>
+            <option value="300">5 minutes</option>
+            <option value="900">15 minutes</option>
+            <option value="3600">1 hour</option>
+          </select></label
+        >
+        <label class="setting-row"
+          ><span>Transition</span
+          ><select name="transition">
+            <option value="fade">Soft fade</option>
+            <option value="slide">Slide across</option>
+            <option value="none">Instant</option>
+          </select></label
+        >
+        <label class="setting-row"
+          ><span>Transition duration</span
+          ><select name="transitionMs">
+            <option value="400">Quick · 0.4s</option>
+            <option value="1200">Gentle · 1.2s</option>
+            <option value="2500">Slow · 2.5s</option>
+          </select></label
+        >
+        <label class="setting-row"
+          ><span>Shuffle photos<small>Every photo once before the next round</small></span
+          ><input type="checkbox" name="shuffle" class="switch"
+        /></label>
+        <h3>Little details</h3>
+        <label class="setting-row"
+          ><span>Clock</span><input type="checkbox" name="clock" class="switch"
+        /></label>
+        <label class="setting-row"
+          ><span>Date</span><input type="checkbox" name="date" class="switch"
+        /></label>
+        <label class="setting-row"
+          ><span>24-hour clock</span><input type="checkbox" name="hour24" class="switch"
+        /></label>
+        <label class="setting-row"
+          ><span>Widget position</span
+          ><select name="position">
+            <option value="bottom">Bottom corners</option>
+            <option value="top">Top corners</option>
+          </select></label
+        >
+        <label class="setting-row"
+          ><span>Widget size</span
+          ><select name="widgetSize">
+            <option value="75">Small</option>
+            <option value="100">Regular</option>
+            <option value="125">Large</option>
+          </select></label
+        >
+        <h3>Weather</h3>
+        <label class="setting-row"
+          ><span>Show weather<small>Forecast data from Open-Meteo</small></span
+          ><input type="checkbox" name="weather" class="switch"
+        /></label>
+        <label class="setting-row"
+          ><span>Weather location</span
+          ><select name="weatherLocation">
+            <option value="ip">Automatic · public IP</option>
+            <option value="manual">Manual location</option>
+          </select></label
+        >
+        <div id="manual-weather" class="weather-settings hidden">
+          <label
+            >Place name<input
+              name="city"
+              type="text"
+              maxlength="70"
+              placeholder="e.g. Santa Clara, CA"
+          /></label>
+          <div class="coordinate-row">
+            <label
+              >Latitude<input
+                name="latitude"
+                type="text"
+                inputmode="decimal"
+                placeholder="37.35" /></label
+            ><label
+              >Longitude<input
+                name="longitude"
+                type="text"
+                inputmode="decimal"
+                placeholder="-121.96"
+            /></label>
+          </div>
+        </div>
+        <p id="weather-location-status" class="help-note" aria-live="polite">
+          Enable weather to detect your location.
+        </p>
+        <button id="refresh-weather" type="button" class="small-button">
+          Refresh location &amp; weather
+        </button>
+        <p class="help-note">
+          Automatic location uses this Portal’s public IP through IPWHOIS.io; it may show a nearby
+          city or VPN location. No GPS permission is needed. Changes save automatically once the
+          location fields are valid. Refresh uses your current settings.
+        </p>
+        <label class="setting-row"
+          ><span>Temperature</span
+          ><select name="units">
+            <option value="celsius">Celsius · °C</option>
+            <option value="fahrenheit">Fahrenheit · °F</option>
+          </select></label
+        >
+        <h3>Photo fit</h3>
+        <label class="setting-row"
+          ><span>Spare background</span
+          ><select name="background">
+            <option value="paper">Warm white photo paper</option>
+            <option value="black">Black</option>
+          </select></label
+        >
+        <p class="help-note">
+          All photo proportions are welcome. Photos squarer than 4:3 keep their proportions and show
+          in either frame direction. 4:3 and 3:2 fill the matching frame. Other photos fill when no
+          more than 25% is cropped; extreme panoramas fit in full. Only screen-size display copies
+          are stored.
+        </p>
+        <button id="exit-app" type="button" class="text-button exit-button">
+          Return to Portal home ↗
+        </button>
+      </form>
+      <div class="panel-foot"><span>Changes save automatically on your Portal</span></div>
+    </section>
+    <section id="upload-dialog" class="dialog upload-dialog hidden" aria-label="Computer uploads">
+      <p class="eyebrow">FROM YOUR COMPUTER TO YOUR FRAME</p>
+      <h2>Add a little life.</h2>
+      <section
+        id="upload-import-progress"
+        class="import-status hidden"
+        aria-label="Upload import progress"
+      ></section>
+      <p>Connect your computer or phone to the same Wi-Fi as the Portal.</p>
+      <div id="upload-live" class="hidden">
+        <img id="upload-qr" alt="Scan to open the photo upload page" />
+        <p class="upload-address" id="upload-address"></p>
+        <p class="upload-code-label">Upload code <strong id="upload-code"></strong></p>
+        <p>
+          Scan the QR code, or enter the address in your browser and use this code. Select photos to
+          add them to the frame.
+        </p>
+      </div>
+      <p id="upload-message" aria-live="polite"></p>
+      <button id="upload-start" class="primary compact">Start uploads</button
+      ><button id="upload-stop" class="small-button hidden">Stop uploads</button
+      ><button id="upload-close" class="small-button">Back to photos</button>
+    </section>
+    <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+    <script src="qrcode.js"></script>
+    <div id="album-modal-scrim" class="scrim album-modal-scrim hidden"></div>
+    <section
+      id="album-name-dialog"
+      class="dialog hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="album-name-title"
+    >
+      <form id="album-name-form">
+        <h2 id="album-name-title">Create an album</h2>
+        <label class="help-note" for="album-name-input">Album name</label
+        ><input
+          id="album-name-input"
+          class="album-name-input"
+          maxlength="80"
+          required
+          autocomplete="off"
+        /><button id="album-name-save" type="submit" class="primary compact">Create album</button
+        ><button id="album-name-cancel" type="button" class="small-button">Cancel</button>
+      </form>
+    </section>
+    <section
+      id="album-cover-dialog"
+      class="dialog cover-dialog hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="album-cover-title"
+    >
+      <h2 id="album-cover-title">Choose an album cover</h2>
+      <p>Select 1–4 photos. Tap a selected photo to remove it.</p>
+      <div id="album-cover-preview"></div>
+      <p id="album-cover-count" class="help-note" aria-live="polite"></p>
+      <div id="album-cover-grid" class="cover-grid"></div>
+      <div class="cover-actions">
+        <button id="album-cover-save" class="primary compact">Save cover</button
+        ><button id="album-cover-cancel" class="small-button">Cancel</button>
+      </div>
+    </section>
+    <script src="order.js"></script>
+    <script src="import-progress.js"></script>
+    <script src="settings.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
