@@ -4,6 +4,8 @@ A local photo-frame app for Meta Portal. Import photos from USB or a browser, or
 
 **Version 0.11.0 · Android 9+ · MIT license**
 
+[Download the latest release](https://github.com/ChuranHe/Still/releases/latest) · [Install on your Portal](#install-a-prebuilt-apk)
+
 ## Features
 
 - **Albums:** create, rename, select, and delete albums. Each album has independent photo copies; duplicates are skipped within an album.
@@ -19,7 +21,41 @@ A local photo-frame app for Meta Portal. Import photos from USB or a browser, or
 
 Still has been tested on an Android 10 Portal with a 1280 × 800 display that rotates to 800 × 1280. It runs in the foreground and keeps the screen awake. Other Android devices and HEIF codec variants may behave differently.
 
-## Build and install
+## Install a prebuilt APK
+
+No development toolchain or source build is needed. You need a computer, a USB data cable, and a Portal that allows USB debugging and sideloaded Android apps.
+
+1. Download [**still-0.11.0.apk**](https://github.com/ChuranHe/Still/releases/download/v0.11.0/still-0.11.0.apk) from the [GitHub release](https://github.com/ChuranHe/Still/releases/latest). Download the `.apk` asset, rather than either source-code archive.
+2. Download Google's [SDK Platform-Tools for your computer](https://developer.android.com/tools/releases/platform-tools), extract the ZIP, and copy the APK into the extracted `platform-tools` folder. Android Studio is not required.
+3. On the Portal, enable **Developer options → USB debugging** in system settings. Android usually reveals Developer options after tapping **Build number** seven times in About; the location and availability depend on Portal firmware. This installation method requires firmware that exposes USB debugging.
+4. Keep the Portal powered, connect it to the computer with a USB data cable, and accept **Allow USB debugging** on the Portal. Remove any USB photo drive while the computer uses the port.
+5. Open a terminal in `platform-tools` and run the commands below for your computer.
+
+**macOS / Linux:**
+
+```sh
+./adb devices
+./adb install --no-incremental -r still-0.11.0.apk
+./adb shell am start -n com.portalframe/.MainActivity
+```
+
+**Windows PowerShell:**
+
+```powershell
+.\adb.exe devices
+.\adb.exe install --no-incremental -r still-0.11.0.apk
+.\adb.exe shell am start -n com.portalframe/.MainActivity
+```
+
+After the first command, the Portal must appear with status `device`. If it says `unauthorized`, accept the debugging prompt and run the command again. If nothing appears, check USB debugging and use a data-capable cable/port. Windows may also require an appropriate device USB driver. If several devices appear, add `-s PORTAL_SERIAL` after `adb` in the install and launch commands, replacing `PORTAL_SERIAL` with the Portal's value from the list.
+
+The install command should print **Success**; the final command opens Still even if the Portal launcher hides sideloaded apps. You can disconnect the computer afterward; photos are imported separately inside an album.
+
+For later updates, download the newer release's APK and repeat the install/launch commands with its filename. **`-r` keeps existing albums and settings when the signing certificate matches.** A source build uses its own local key and may not be compatible with the published APK. If Android reports `INSTALL_FAILED_UPDATE_INCOMPATIBLE`, stop and use a build signed with the original key; uninstalling Still deletes its private photo library and settings.
+
+Each release includes **SHA256SUMS** and **SIGNING_CERTIFICATE.txt**. To check a download, compare its SHA-256 with the matching entry in SHA256SUMS: `shasum -a 256 still-0.11.0.apk` on macOS, `sha256sum still-0.11.0.apk` on Linux, or `Get-FileHash .\still-0.11.0.apk -Algorithm SHA256` in PowerShell. The release APK is a normal signed build with app/WebView debugging disabled.
+
+## Build from source
 
 Requirements: Python 3.12+, JDK 17, Android platform 32, Android build-tools 32.0.0, and ADB. Node.js is needed only for JavaScript tests and formatting.
 

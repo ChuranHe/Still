@@ -10,7 +10,27 @@ Use `python3 scripts/build.py` for a normal APK, or add `--debug` for WebView in
 
 ### Signing and updates
 
-The build script generates `.tools/still-debug.keystore` for local development. Its standard development password is public configuration, not a distribution secret. Keep your local key: an installed Android app can be updated in place only with a compatible signer. Do not commit a key or delete app data to solve a signing mismatch. Distribution signing and APK release automation are not configured; establish your own signing process before distributing binaries.
+The build script generates `.tools/still-debug.keystore` for local development. Its standard development password is public configuration, not a distribution secret. Keep your local key: an installed Android app can be updated in place only with a compatible signer. Do not commit a key or delete app data to solve a signing mismatch.
+
+The maintainer's prebuilt GitHub releases use a retained signing key, also compatible with the previously installed Portal build. The private key is never included in source or release assets. A fresh source checkout generates a different key, so its APK cannot update a published build in place. The APK's certificate is public; each release includes its SHA-256 fingerprint in `SIGNING_CERTIFICATE.txt` and file checksums in `SHA256SUMS`. A normal build disables app and WebView debugging even though the historical local keystore filename contains `debug`.
+
+### Publish a release
+
+Release publication is manual. Keep the signing key backed up privately and reuse it for updates. Verify the version in the manifest/package files, run the relevant checks, and build without `--debug`:
+
+```sh
+python3 scripts/build.py
+```
+
+Verify the APK with the SDK's `apksigner verify --verbose --print-certs` and check its package/version/debug flags with `aapt dump badging`. Copy it into an ignored release-staging folder as `still-VERSION.apk`; create `SIGNING_CERTIFICATE.txt` with the signer SHA-256 fingerprint and `SHA256SUMS` for both files. Install that exact APK on the Portal and verify playback and existing data before publishing.
+
+Commit/push the documentation and version changes, then create an annotated `vVERSION` tag at that commit and push the tag. With GitHub CLI authenticated to the repository, publish the reviewed assets and release notes (replace `VERSION` throughout):
+
+```sh
+gh release create vVERSION build/release/vVERSION/still-VERSION.apk build/release/vVERSION/SHA256SUMS build/release/vVERSION/SIGNING_CERTIFICATE.txt --repo ChuranHe/Still --verify-tag --title "Still VERSION" --notes-file build/release/vVERSION/notes.md --latest
+```
+
+Keep notes outside the published asset list. Download the published APK again and verify its SHA-256 against the local tested copy. Do not commit generated APKs or signing keys, and do not replace an existing version's APK silently.
 
 ## Architecture
 
@@ -99,4 +119,4 @@ The `sleep.mjs` and `weather.mjs` suites exercise sensor/clock and live weather 
 
 The browser server listens only during a temporary session, uses an eight-digit code for album listings/mutations, uploads, and progress, and enforces Host/Origin checks and attempt limits. Upload transport is local HTTP. No image-download endpoint is exposed. WebView assets use the intercepted `https://frame.local/` origin with restricted content security policy and no filesystem access.
 
-IP weather sends requests to IPWHOIS.io and Open-Meteo; photos are not included. Settings and album metadata stay on the device. Personal photos, signed APKs, tool downloads, and account secrets are not repository contents.
+IP weather sends requests to IPWHOIS.io and Open-Meteo; photos are not included. Settings and album metadata stay on the device. Personal photos, tool downloads, signing keys, and account secrets are not repository contents. Signed APKs are published only as GitHub release assets.
